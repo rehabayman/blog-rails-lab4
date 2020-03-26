@@ -1,0 +1,24 @@
+
+<%= form_with(model: comment, local: true) do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+
+      <ul>
+      <% comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag "post_id", "#{@post_id}" %>
+
+  <div class="form-group">
+    <%= form.label :content, style: "margin-top:2rem" %>
+    <%= form.text_area :content, class: "form-control", size: "24x6" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-success btn-block" %>
+  </div>
+<% end %>

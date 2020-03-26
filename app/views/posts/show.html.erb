@@ -1,0 +1,37 @@
+
+<% if notice %>
+  <p id="notice" class="alert alert-success" style="margin-top: 2rem; color: green;"><%= notice %></p>
+<% end %>
+<div class="card" style="width: 50rem; margin-bottom: 0.5rem; margin-top: 2rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%= @post.title %> </h5> 
+    <h6 class="card-content" style="font-size:15px;"> Last Updated at: <%= @post.updated_at %> </h6><hr>
+    <p class="card-content"> <%= @post.content %> </p>
+  </div>
+</div>
+
+<div style="margin-top: 1rem;">
+  <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-default", style:"width:6rem;" %> |
+  <%= link_to 'Back', posts_path, class: "btn btn-default", style:"width:6rem;" %>
+</div>
+
+<div class="container">
+  <%# <p id="notice"><%= notice %><%#</p> %>
+
+  <h1>Comments</h1>
+
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <div class="card" style="width: 50rem; margin-bottom: 0.5rem;">
+          <div class="card-body">
+            <h5 class="card-title"> <%= comment.content %> </h5>
+            <%= link_to 'Edit', edit_comment_path(comment, post_id: params[:id]), class: "btn btn-primary", style: "width:6rem;" %>
+            <%= link_to 'Delete', comment_path(comment, post_id: params[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+          </div>
+        </div>
+    <% end %>
+        
+    <% end %>
+    <br>
+  <%= link_to 'New Comment', new_comment_path(post_id: params[:id]), class: "btn btn-success", style: "width:10rem; color: white;" %>
+</div>

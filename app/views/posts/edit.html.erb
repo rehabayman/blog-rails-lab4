@@ -1,0 +1,8 @@
+<h1>Editing Post</h1>
+
+<%= render 'form', post: @post %>
+
+<div style="margin-top: 1rem;">
+    <%= link_to 'Show', @post, class: "btn btn-light", style:"width:6rem;" %> |
+    <%= link_to 'Back', posts_path, class: "btn btn-light", style:"width:6rem;"%>
+</div>

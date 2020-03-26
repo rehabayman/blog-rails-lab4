@@ -1,0 +1,22 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Posts</h1>
+
+  <% @posts.each do |post| %>
+    <div class="card" style="width: 50rem; margin-bottom: 0.5rem;">
+      <div class="card-body">
+        <h5 class="card-title"> <%= post.title %> </h5>
+        <h6 class="card-content"> Last Updated at: <%= post.updated_at %> </h6>
+        <%= link_to 'Show', post_path(post), class: "btn btn-info", style: "width:6rem;"  %>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary", style: "width:6rem;"  %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+      </div>
+    </div>          
+  <% end %>
+  
+  <br>
+
+  <%= link_to 'New Post', new_post_path, class: "btn btn-success", style: "width:6rem; color: white;"  %>
+
+</div>

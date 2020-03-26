@@ -1,0 +1,20 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Comments</h1>
+
+    <% @comments.each do |comment| %>
+      <div class="card" style="width: 50rem; margin-bottom: 0.5rem;">
+        <div class="card-body">
+          <h5 class="card-title"> <%= comment.content %> </h5>
+          <%= link_to 'Show', comment, class: "btn btn-info", style: "width:6rem;"  %>
+          <%= link_to 'Edit', edit_comment_path(comment), class: "btn btn-primary", style: "width:6rem;" %>
+          <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+        </div>
+      </div>
+        
+    <% end %>
+    <br>
+
+  <%= link_to 'New Comment', new_comment_path, class: "btn btn-success", style: "width:6rem; color: white;" %>
+</div>
