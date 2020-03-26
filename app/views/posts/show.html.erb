@@ -25,8 +25,10 @@
         <div class="card" style="width: 50rem; margin-bottom: 0.5rem;">
           <div class="card-body">
             <h5 class="card-title"> <%= comment.content %> </h5>
-            <%= link_to 'Edit', edit_comment_path(comment, post_id: params[:id]), class: "btn btn-primary", style: "width:6rem;" %>
-            <%= link_to 'Delete', comment_path(comment, post_id: params[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+            <% if comment.user_id == session[:user_id] %>
+              <%= link_to 'Edit', edit_comment_path(comment, post_id: params[:id]), class: "btn btn-primary", style: "width:6rem;" %>
+              <%= link_to 'Delete', comment_path(comment, post_id: params[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+            <% end %>
           </div>
         </div>
     <% end %>

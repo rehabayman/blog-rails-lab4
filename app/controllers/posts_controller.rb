@@ -1,5 +1,15 @@
 class PostsController < ApplicationController
+  before_action :auth
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+
+  def auth
+    p "session is: #{session}"
+    redirect_to root_path unless session[:user_id]
+  end
+  # def auth
+  #   p session[:user_id]
+  #   redirect_to(:login) unless session[:user_id]
+  # end
 
   # GET /posts
   # GET /posts.json
@@ -26,7 +36,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user_id = 1
+    @post.user_id = session[:user_id]
 
     respond_to do |format|
       if @post.save

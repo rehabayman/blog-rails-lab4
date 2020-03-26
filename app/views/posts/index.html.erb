@@ -9,8 +9,10 @@
         <h5 class="card-title"> <%= post.title %> </h5>
         <h6 class="card-content"> Last Updated at: <%= post.updated_at %> </h6>
         <%= link_to 'Show', post_path(post), class: "btn btn-info", style: "width:6rem;"  %>
-        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary", style: "width:6rem;"  %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+        <% if post.user_id == session[:user_id] %>
+          <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary", style: "width:6rem;"  %>
+          <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width:6rem; color: white;" %>
+        <% end %>
       </div>
     </div>          
   <% end %>

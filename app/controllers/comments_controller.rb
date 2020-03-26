@@ -1,10 +1,18 @@
 class CommentsController < ApplicationController
+  before_action :auth
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
+  def auth
+    p "session is: #{session}"
+    redirect_to root_path unless session[:user_id]
+  end
+  
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    # @comments = Comment.all
+    @posts = Post.where(user_id: session[:user_id]).order(created_at: :desc)
+    redirect_to posts_path
   end
 
   # GET /comments/1
@@ -29,6 +37,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.post_id = params[:post_id]
+    @comment.user_id = session[:user_id]
 
     respond_to do |format|
       if @comment.save
