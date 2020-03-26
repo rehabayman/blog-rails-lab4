@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_192127) do
+ActiveRecord::Schema.define(version: 2020_03_26_152250) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "content", null: false
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_192127) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
+    t.string "username"
+    t.string "password_digest"
   end
 
   add_foreign_key "comments", "posts"
